@@ -1,5 +1,14 @@
 def simplify_path(path):
-
+    stack = []
+    components = path.split('/')
+    for comp in components:
+        if comp == '..':
+            if stack:
+                stack.pop()
+        elif comp and comp != '.':
+            stack.append(comp)
+    result = '/' + '/'.join(stack)
+    return result
 
 # 验证学生答案的示例
 def validate_student_answer():

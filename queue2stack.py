@@ -3,12 +3,18 @@ class MyStack:
         self.queue = list()
 
     def push(self, x):
+        self.queue.append(x)
 
     def pop(self):
+        for i in range(len(self.queue) - 1):
+            self.queue.append(self.queue.pop(0))
+        return self.queue.pop(0)
 
     def peak(self):
+        return self.queue[-1]
 
     def empty(self):
+        return not bool(self.queue)
 
 
 # 验证用的代码：
