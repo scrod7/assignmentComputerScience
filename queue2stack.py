@@ -1,20 +1,23 @@
+from collections import deque
+
+
 class MyStack:
     def __init__(self):
-        self.queue = list()
+        self.queue = deque()
 
     def push(self, x):
         self.queue.append(x)
 
     def pop(self):
-        for i in range(len(self.queue) - 1):
-            self.queue.append(self.queue.pop(0))
-        return self.queue.pop(0)
+        return self.queue.pop()
 
     def peak(self):
-        return self.queue[-1]
+        return max(self.queue)
 
     def empty(self):
-        return not bool(self.queue)
+        self.queue.clear()
+        return bool(self.queue)
+
 
 
 # 验证用的代码：

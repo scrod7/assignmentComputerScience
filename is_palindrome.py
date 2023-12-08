@@ -5,12 +5,7 @@ class ListNode:
 
 
 def is_palindrome_linked_list(head):
-    node_now = ListNode()
-    his = ""
-    while node_now.next != None:
-        his += str(node_now.value)
-        node_now = node_now.next
-    return his == his[::-1]
+   
 
 
 def validate_student_answer():
