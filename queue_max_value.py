@@ -1,18 +1,24 @@
 from collections import deque
 
-
 class MaxQueue:
     def __init__(self):
         self.queue = deque()
+        self.max_queue = deque()
 
-    def push(self, x):
-        self.queue.append(x)
+    def push(self, value):
+        q, mq = self.queue, self.max_queue
+        q.append(value)
+        while mq and value > mq[-1]: mq.pop()
+        mq.append(value)
 
     def pop(self):
-        self.queue.pop()
+        q, mq = self.queue, self.max_queue
+        if not q: return None
+        if q[0] == mq[0]: mq.popleft()
+        return q.popleft()
 
     def max_value(self):
-        return max(self.queue)
+        return self.max_queue[0] if self.max_queue else -1
 
 def validate_student_answer():
     # 创建 MaxQueue 实例

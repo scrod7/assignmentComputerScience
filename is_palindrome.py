@@ -3,9 +3,22 @@ class ListNode:
         self.value = value
         self.next = next
 
-
 def is_palindrome_linked_list(head):
-   
+    stack = []
+    current = head
+
+    while current:
+        stack.append(current.value)
+        current = current.next
+
+    current = head
+    while current:
+        if current.value != stack.pop():
+            return False
+        current = current.next
+
+    return True
+
 
 
 def validate_student_answer():

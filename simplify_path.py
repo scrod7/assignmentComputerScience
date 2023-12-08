@@ -1,17 +1,14 @@
 def simplify_path(path):
-    paths = path.split("/")
-    for i in paths:
-        if i == '':
-            paths.remove(i)
-    process_paths = []
-    for s in paths:
-        if s == '.':
-            pass
-        elif s == '..':
-            process_paths.pop(len(process_paths) - 1)
-        else:
-            process_paths.append(s)
-    return '/' + ''.join(process_paths)
+    stack = []
+    components = path.split('/')
+    for comp in components:
+        if comp == '..':
+            if stack:
+                stack.pop()
+        elif comp and comp != '.':
+            stack.append(comp)
+    result = '/' + '/'.join(stack)
+    return result
 
 
 # 验证学生答案的示例
